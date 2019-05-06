@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Text;
 using System.Windows;
 using System.Windows.Interop;
@@ -8,6 +8,9 @@ using System.IO;
 
 namespace IconPicker
 {
+    /// <summary>
+    /// Shows the Windows native icon picker to the user and either returns a reference to it or the selected icon itself as an image.
+    /// </summary>
     public class IconPickerDialog
     {
         //  Constants
@@ -15,18 +18,6 @@ namespace IconPicker
 
         private const string Shell32 = "shell32.dll";
         private const string User32 = "user32.dll";
-
-        //  External Methods
-        //  ================
-
-        [DllImport(Shell32, CharSet = CharSet.Auto)]
-        private static extern int PickIconDlg(IntPtr hwndOwner, StringBuilder lpstrFile, int nMaxFile, ref int lpdwIconIndex);
-
-        [DllImport(Shell32, CharSet = CharSet.Auto)]
-        private static extern uint ExtractIconEx(string szFileName, int nIconIndex, IntPtr[] phiconLarge, IntPtr[] phiconSmall, uint nIcons);
-
-        [DllImport(User32, CharSet = CharSet.Auto)]
-        private static extern bool DestroyIcon(IntPtr handle);
 
         //  Variables
         //  =========
@@ -41,9 +32,25 @@ namespace IconPicker
             iconFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), Shell32);
         }
 
+        //  External Methods
+        //  ================
+
+        [DllImport(Shell32, CharSet = CharSet.Auto)]
+        private static extern int PickIconDlg(IntPtr hwndOwner, StringBuilder lpstrFile, int nMaxFile, ref int lpdwIconIndex);
+
+        [DllImport(Shell32, CharSet = CharSet.Auto)]
+        private static extern uint ExtractIconEx(string szFileName, int nIconIndex, IntPtr[] phiconLarge, IntPtr[] phiconSmall, uint nIcons);
+
+        [DllImport(User32, CharSet = CharSet.Auto)]
+        private static extern bool DestroyIcon(IntPtr handle);
+
         //  Methods
         //  =======
 
+        /// <summary>
+        /// Shows the Windows native icon picker to the user and returns a reference to their selection.
+        /// </summary>
+        /// <returns>A reference to the user-selected icon or null if they cancel.</returns>
         public static IconReference SelectIcon()
         {
             int index = 0;
@@ -61,6 +68,10 @@ namespace IconPicker
             return null;
         }
 
+        /// <summary>
+        /// Shows the Windows native icon picker to the user and returns the icon as a bitmap.
+        /// </summary>
+        /// <returns>A bitmap of the user-selected image or null if they cancel.</returns>
         public static BitmapSource SelectIconAsBitmap()
         {
             IconReference iconReference = SelectIcon();
