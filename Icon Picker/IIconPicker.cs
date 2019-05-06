@@ -8,6 +8,9 @@ namespace IconPicker
     /// </summary>
     public interface IIconPicker
     {
+        //  Methods
+        //  =======
+
         /// <summary>
         /// Shows the Windows native icon picker to the user and returns a reference to their selection.
         /// </summary>
