@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Text;
 using System.Windows;
 using System.Windows.Interop;
@@ -52,7 +52,7 @@ namespace IconPicker
         /// Shows the Windows native icon picker to the user and returns a reference to their selection.
         /// </summary>
         /// <returns>A reference to the user-selected icon or null if they cancel.</returns>
-        public static IconReference SelectIconReference()
+        public IconReference SelectIconReference()
         {
             int index = 0;
             var sb = new StringBuilder(iconFile, 500);
@@ -73,7 +73,7 @@ namespace IconPicker
         /// Shows the Windows native icon picker to the user and returns the icon as a bitmap.
         /// </summary>
         /// <returns>A bitmap of the user-selected image or null if they cancel.</returns>
-        public static Icon SelectIcon()
+        public Icon SelectIcon()
         {
             IconReference iconReference = SelectIconReference();
 
@@ -98,7 +98,7 @@ namespace IconPicker
         /// Shows the Windows native icon picker to the user and returns the icon as a bitmap.
         /// </summary>
         /// <returns>A bitmap of the user-selected image or null if they cancel.</returns>
-        public static BitmapSource SelectIconAsBitmap()
+        public BitmapSource SelectIconAsBitmap()
         {
             IconReference iconReference = SelectIconReference();
 
