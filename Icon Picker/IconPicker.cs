@@ -12,7 +12,7 @@ namespace IconPicker
     /// <summary>
     /// Shows the Windows native icon picker to the user and either returns a reference to it or the selected icon itself as an icon or bitmap.
     /// </summary>
-    public class IconPickerDialog
+    public class IconPickerDialog : IIconPicker
     {
         //  Constants
         //  =========
