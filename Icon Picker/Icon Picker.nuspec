@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/tobysmith568/Icon-Picker/</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Initial Release</releaseNotes>
+    <releaseNotes>Switched from static methods to a concrete implementation</releaseNotes>
     <copyright>Copyright 2019 Toby Smith</copyright>
     <tags>WPF Icon Dialog</tags>
   </metadata>
