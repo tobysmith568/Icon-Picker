@@ -70,12 +70,13 @@ namespace IconPicker
         }
 
         /// <summary>
-        /// Shows the Windows native icon picker to the user and returns the icon as a bitmap.
+        /// Returns a given IconReference as an icon.
+        /// If null is passed in then the user will be prompted to pick one with the native Windows icon-picker dialog.
         /// </summary>
-        /// <returns>A bitmap of the user-selected image or null if they cancel.</returns>
-        public Icon SelectIcon()
+        /// <returns>An icon of the given IconReference or null if null is passed in and the user cancels the dialog prompt.</returns>
+        public Icon SelectIcon(IIconReference iconReference = null)
         {
-            IIconReference iconReference = SelectIconReference();
+            iconReference = iconReference ?? SelectIconReference();
 
             if (iconReference == null)
             {
@@ -95,12 +96,13 @@ namespace IconPicker
         }
 
         /// <summary>
-        /// Shows the Windows native icon picker to the user and returns the icon as a bitmap.
+        /// Returns a given IconReference as a bitmap.
+        /// If null is passed in then the user will be prompted to pick one with the native Windows icon-picker dialog.
         /// </summary>
-        /// <returns>A bitmap of the user-selected image or null if they cancel.</returns>
-        public BitmapSource SelectIconAsBitmap()
+        /// <returns>A bitmap of the given IconReference or null if null is passed in and the user cancels the dialog prompt.</returns>
+        public BitmapSource SelectIconAsBitmap(IIconReference iconReference = null)
         {
-            IIconReference iconReference = SelectIconReference();
+            iconReference = iconReference ?? SelectIconReference();
 
             if (iconReference == null)
             {
