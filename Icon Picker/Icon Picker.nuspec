@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <license type="expression">GPL-3.0-only</license>
+    <projectUrl>https://github.com/tobysmith568/Icon-Picker/</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Initial Release</releaseNotes>
+    <copyright>Copyright 2019 Toby Smith</copyright>
+    <tags>WPF Icon Dialog</tags>
+  </metadata>
+</package>
