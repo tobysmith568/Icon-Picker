@@ -52,7 +52,7 @@ namespace IconPicker
         /// Shows the Windows native icon picker to the user and returns a reference to their selection.
         /// </summary>
         /// <returns>A reference to the user-selected icon or null if they cancel.</returns>
-        public IconReference SelectIconReference()
+        public IIconReference SelectIconReference()
         {
             int index = 0;
             var sb = new StringBuilder(iconFile, 500);
@@ -75,7 +75,7 @@ namespace IconPicker
         /// <returns>A bitmap of the user-selected image or null if they cancel.</returns>
         public Icon SelectIcon()
         {
-            IconReference iconReference = SelectIconReference();
+            IIconReference iconReference = SelectIconReference();
 
             if (iconReference == null)
             {
@@ -100,7 +100,7 @@ namespace IconPicker
         /// <returns>A bitmap of the user-selected image or null if they cancel.</returns>
         public BitmapSource SelectIconAsBitmap()
         {
-            IconReference iconReference = SelectIconReference();
+            IIconReference iconReference = SelectIconReference();
 
             if (iconReference == null)
             {
