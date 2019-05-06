@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 using System.Text;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 using System.Runtime.InteropServices;
+using System.IO;
 
 namespace IconPicker
 {
@@ -14,7 +15,6 @@ namespace IconPicker
 
         private const string Shell32 = "shell32.dll";
         private const string User32 = "user32.dll";
-        private const string SlashShell32 = @"\shell32.dll";
 
         //  External Methods
         //  ================
@@ -38,7 +38,7 @@ namespace IconPicker
 
         static IconPickerDialog()
         {
-            iconFile = Environment.GetFolderPath(Environment.SpecialFolder.System) + SlashShell32;
+            iconFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.System), Shell32);
         }
 
         //  Methods
