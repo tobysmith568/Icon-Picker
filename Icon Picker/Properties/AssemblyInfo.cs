@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Icon Picker")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Allows the user to select an icon from an .ico, a .exe, or a .dll")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Toby Smith")]
 [assembly: AssemblyProduct("Icon Picker")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCopyright("Copyright ©  2019 Toby Smith")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
