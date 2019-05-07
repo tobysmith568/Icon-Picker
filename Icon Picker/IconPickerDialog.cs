@@ -6,7 +6,9 @@ using System.Windows.Media.Imaging;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Drawing;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
 namespace IconPicker
 {
     /// <summary>
@@ -37,13 +39,13 @@ namespace IconPicker
         //  ================
 
         [DllImport(Shell32, CharSet = CharSet.Auto)]
-        private static extern int PickIconDlg(IntPtr hwndOwner, StringBuilder lpstrFile, int nMaxFile, ref int lpdwIconIndex);
+        private static extern int Extern_PickIconDlg(IntPtr hwndOwner, StringBuilder lpstrFile, int nMaxFile, ref int lpdwIconIndex);
 
         [DllImport(Shell32, CharSet = CharSet.Auto)]
-        private static extern uint ExtractIconEx(string szFileName, int nIconIndex, IntPtr[] phiconLarge, IntPtr[] phiconSmall, uint nIcons);
+        private static extern uint Extern_ExtractIconEx(string szFileName, int nIconIndex, IntPtr[] phiconLarge, IntPtr[] phiconSmall, uint nIcons);
 
         [DllImport(User32, CharSet = CharSet.Auto)]
-        private static extern bool DestroyIcon(IntPtr handle);
+        private static extern bool Extern_DestroyIcon(IntPtr handle);
 
         //  Methods
         //  =======
@@ -58,13 +60,9 @@ namespace IconPicker
             var sb = new StringBuilder(iconFile, 500);
             int retval = PickIconDlg((IntPtr)null, sb, sb.MaxCapacity, ref index);
 
-            if (retval != 0)
+            if (retval == 1)
             {
-                return new IconReference()
-                {
-                    FilePath = sb.ToString(),
-                    IconIndex = index
-                };
+                return new IconReference(sb.ToString(), index);
             }
             return null;
         }
@@ -87,7 +85,15 @@ namespace IconPicker
             var smallIcons = new IntPtr[1];
             ExtractIconEx(iconReference.FilePath, iconReference.IconIndex, largeIcons, smallIcons, 1);
 
-            Icon icon = Icon.FromHandle(largeIcons[0]);
+            Icon icon;
+            try
+            {
+                icon = Icon.FromHandle(largeIcons[0]);
+            }
+            catch
+            {
+                return null;
+            }
 
             DestroyIcon(largeIcons[0]);
             DestroyIcon(smallIcons[0]);
@@ -113,12 +119,35 @@ namespace IconPicker
             var smallIcons = new IntPtr[1];
             ExtractIconEx(iconReference.FilePath, iconReference.IconIndex, largeIcons, smallIcons, 1);
 
-            BitmapSource bitmapSource = Imaging.CreateBitmapSourceFromHIcon(largeIcons[0], Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            BitmapSource bitmapSource;
+            try
+            {
+                bitmapSource = Imaging.CreateBitmapSourceFromHIcon(largeIcons[0], Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
+            }
+            catch
+            {
+                return null;
+            }
 
             DestroyIcon(largeIcons[0]);
             DestroyIcon(smallIcons[0]);
 
             return bitmapSource;
+        }
+
+        internal virtual int PickIconDlg(IntPtr hwndOwner, StringBuilder lpstrFile, int nMaxFile, ref int lpdwIconIndex)
+        {
+            return Extern_PickIconDlg(hwndOwner, lpstrFile, nMaxFile, ref lpdwIconIndex);
+        }
+
+        internal virtual uint ExtractIconEx(string szFileName, int nIconIndex, IntPtr[] phiconLarge, IntPtr[] phiconSmall, uint nIcons)
+        {
+            return Extern_ExtractIconEx(szFileName, nIconIndex, phiconLarge, phiconSmall, nIcons);
+        }
+
+        internal virtual bool DestroyIcon(IntPtr handle)
+        {
+            return Extern_DestroyIcon(handle);
         }
     }
 }

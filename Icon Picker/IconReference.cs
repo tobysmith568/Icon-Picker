@@ -19,12 +19,12 @@ namespace IconPicker
         /// <summary>
         /// File path to the icon.
         /// </summary>
-        public string FilePath { get; set; }
+        public string FilePath { get; private set; }
 
         /// <summary>
         /// Index of the icon within the file.
         /// </summary>
-        public int IconIndex { get; set; }
+        public int IconIndex { get; private set; }
 
         //  Constructors
         //  ============
@@ -43,7 +43,7 @@ namespace IconPicker
 
             string[] split = reference.Split(',');
             string index = split[split.Length - 1];
-            string filePath = reference.Substring(0, reference.Length - index.Length);
+            string filePath = reference.Substring(0, reference.Length - index.Length - 1);
 
             Setup(filePath, index);
         }
@@ -72,13 +72,19 @@ namespace IconPicker
         {
             if (!int.TryParse(index, out int iconIndex))
             {
-                throw new ArgumentException("Prameter [index] needs to be castable to an integer");
+                throw new ArgumentException("Parameter [index] needs to be castable to an integer");
             }
-            Setup(filepath, index);
+
+            Setup(filepath, iconIndex);
         }
 
         private void Setup(string filepath, int index)
         {
+            if (index < 0)
+            {
+                throw new ArgumentException("Parameter [index] needs to be greater than or equal to zero");
+            }
+
             FilePath = filepath;
             IconIndex = index;
         }
