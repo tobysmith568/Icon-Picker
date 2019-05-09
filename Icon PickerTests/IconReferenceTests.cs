@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace IconPicker.Tests
 {
     [TestFixture]
-    internal class IconReferenceTests
+    public class IconReferenceTests
     {
         IconReference subject;
 
@@ -121,6 +121,19 @@ namespace IconPicker.Tests
             ArgumentException e = Assert.Throws<ArgumentException>(() => new IconReference(reference));
 
             Assert.AreEqual("[reference] must be a valid file location followed by a comma and then an int", e.Message);
+        }
+
+        #endregion
+        #region ToString
+        
+        [TestCase("filepath", "0")]
+        [TestCase("filepath", "1")]
+        [TestCase("filepath", "5")]
+        [TestCase("filepath", "25")]
+        public void ToString_ReturnsPathCommaIndex(string filePath, string index)
+        {
+            subject = new IconReference(filePath, index);
+            Assert.AreEqual(filePath + "," + index, subject.ToString());
         }
 
         #endregion
