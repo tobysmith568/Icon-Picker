@@ -8,6 +8,11 @@ namespace IconPicker
     /// </summary>
     public class IconReference : IIconReference
     {
+        //  Constants
+        //  =========
+
+        private const string comma = ",";
+
         //  Variables
         //  =========
 
@@ -66,6 +71,15 @@ namespace IconPicker
         public IconReference(string filePath, int index)
         {
             Setup(filePath, index);
+        }
+
+        /// <summary>
+        /// Returns the FileName and the IconIndex separated by a comma
+        /// </summary>
+        /// <returns>Returns the FileName and the IconIndex separated by a comma</returns>
+        public override string ToString()
+        {
+            return (FilePath ?? string.Empty) + comma + (IconIndex.ToString() ?? string.Empty);
         }
 
         private void Setup(string filepath, string index)
