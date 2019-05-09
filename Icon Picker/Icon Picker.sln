@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Icon Picker", "Icon Picker.csproj", "{AC7ACABA-DFC3-4152-A959-070A8F131EA4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Icon PickerTests", "..\Icon PickerTests\Icon PickerTests.csproj", "{3B9A9C70-D06C-4C24-A7E6-C33AD67975A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{AC7ACABA-DFC3-4152-A959-070A8F131EA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC7ACABA-DFC3-4152-A959-070A8F131EA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC7ACABA-DFC3-4152-A959-070A8F131EA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B9A9C70-D06C-4C24-A7E6-C33AD67975A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B9A9C70-D06C-4C24-A7E6-C33AD67975A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B9A9C70-D06C-4C24-A7E6-C33AD67975A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B9A9C70-D06C-4C24-A7E6-C33AD67975A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

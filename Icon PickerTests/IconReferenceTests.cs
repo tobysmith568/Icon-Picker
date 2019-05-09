@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace IconPicker.Tests
 {
     [TestFixture]
-    public class IconReferenceTests
+    internal class IconReferenceTests
     {
         IconReference subject;
 
