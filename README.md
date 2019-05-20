@@ -15,3 +15,5 @@ Prompts the user to select an icon from the following file types:
 - dll
 
 ![Image of the native Window icon picker dialog](https://i.stack.imgur.com/yM5ge.png)
+
+### https://www.nuget.org/packages/IconPicker/
